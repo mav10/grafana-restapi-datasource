@@ -1,8 +1,12 @@
 ///<reference path="../node_modules/grafana-sdk-mocks/app/headers/common.d.ts" />
-System.register([], function(exports_1) {
+System.register(["./typings/types"], function(exports_1) {
+    var types_1;
     var RestServiceDataSource;
     return {
-        setters:[],
+        setters:[
+            function (types_1_1) {
+                types_1 = types_1_1;
+            }],
         execute: function() {
             RestServiceDataSource = (function () {
                 /** @ngInject */
@@ -27,9 +31,13 @@ System.register([], function(exports_1) {
                             .then(function (results) { return ({ data: [].concat.apply([], results) }); });
                     };
                     this.mapResult = function (target, item) {
+                        var httpStatusCode = parseInt(item.status);
+                        var message = httpStatusCode === types_1.ServiceStates.SUCCESS
+                            ? "" + item.message
+                            : httpStatusCode;
                         return {
                             target: target.subdomain + " " + item.message,
-                            datapoints: [[parseInt(item.status), new Date().getTime()]]
+                            datapoints: [[message, new Date().getTime()]]
                         };
                     };
                     /**

@@ -22,7 +22,8 @@ export class RestServiceDataSourceQueryCtrl extends QueryCtrl {
 
   getDomains = (): DropDownDomainList[] => {
       const domains = this.datasource.getDomains();
-      return ((domains != null) || (domains.length > 0)) ? domains
+      return ((domains != null) && (domains.length > 0))
+          ? domains
           : [{text: 'select domain', value: ''} as DropDownDomainList];
   }
 

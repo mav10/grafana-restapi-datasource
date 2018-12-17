@@ -27,7 +27,8 @@ System.register(['lodash', 'app/plugins/sdk', './css/query_editor.css!'], functi
                     this.defaults = {};
                     this.getDomains = function () {
                         var domains = _this.datasource.getDomains();
-                        return ((domains != null) || (domains.length > 0)) ? domains
+                        return ((domains != null) && (domains.length > 0))
+                            ? domains
                             : [{ text: 'select domain', value: '' }];
                     };
                     this.getRootAddress = function () {

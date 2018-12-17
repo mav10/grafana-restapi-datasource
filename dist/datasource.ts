@@ -2,7 +2,7 @@
 
 import {
     IInstanceSettings,
-    IQueryOptions, IRequestOptions, ServiceRequestOptions, ServiceResult,
+    IQueryOptions, IRequestOptions, ServiceRequestOptions, ServiceResult, ServiceStates,
 } from "./typings/types";
 import {ITarget} from "./typings/queryOptions";
 
@@ -68,9 +68,13 @@ export default class RestServiceDataSource {
     }
 
     mapResult = (target: ITarget, item: ServiceResult): any => {
+        const httpStatusCode = parseInt(item.status);
+        const message = httpStatusCode === ServiceStates.SUCCESS
+            ? `${item.message}`
+            : httpStatusCode;
         return {
             target: `${target.subdomain} ${item.message}`,
-            datapoints: [[parseInt(item.status), new Date().getTime()]]
+            datapoints: [[message, new Date().getTime()]]
         }
     }
 
