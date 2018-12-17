@@ -1,14 +1,14 @@
 {
-  "name": "grafana-typescript-template-datasource",
+  "name": "grafana-typescript-datasource",
   "version": "0.0.1",
-  "description": "TypeScript Template Data Source for Grafana. A starter template for creating data sources written in TypeScript for Grafana.",
+  "description": "Grafana rest API datasource. Call your web-service and add result to the dashboard as real-time client",
   "scripts": {
     "build": "grunt",
     "watch": "grunt watch",
     "test": "./node_modules/karma/bin/karma start"
   },
-  "author": "Grafana Labs",
-  "license": "Apache",
+  "author": "Vasin Maxim",
+  "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
